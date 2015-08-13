@@ -21,8 +21,14 @@ To understand the data briefly, the following codes are used:
 
 ```{r}
 head(activity)
+```
+```{r}
 names(activity)
+```
+```{r}
 str(activity)
+```
+```{r}
 summary(activity)
 ```
 #### What is mean total number of steps taken per day?
@@ -45,6 +51,8 @@ To calculate its mean and median:
 ```{r}
 itsMean <- mean(Total_Steps$steps)
 itsMean 
+```
+```{r}
 itsMedian <- median(Total_Steps$steps)
 itsMedian
 ```
@@ -98,77 +106,8 @@ The New mean and median are:
 ```{r}
 New_Mean <- mean(NewTotalSteps$steps)
 New_Mean
-New_Median <- median(NewTotalSteps$steps)
-New_Median
 ```
-
-Before filling the data
-
-.Mean  :  10766.189  
-.Median:  10765
-
-After filling the data
-
-.Mean  :  10766.189  
-.Median:  10766.189  
-
-Therefore, the values mean before and after filling NA is equivalent, but the median is slightly different by 1.189.
-
-#### Are there differences in activity patterns between weekdays and weekends?
-Create a factor variable in the dataset with two levels weekday and weekend.
 ```{r}
-AllDay <- weekdays(activity_NoNa$date)
-Day <- vector()
-for (i in 1:nrow(activity)) {
-    if (AllDay[i] == "Saturday") {
-        Day[i] <- "Weekend"
-    } else if (AllDay[i] == "Sunday") {
-        Day[i] <- "Weekend"
-    } else {
-        Day[i] <- "Weekday"
-    }
-}
-activity_NoNa$Day <- Day
-activity_NoNa$Day <- factor(activity_NoNa$Day)
-
-steps_Day <- aggregate(steps ~ interval + Day, data = activity_NoNa, mean)
-names(steps_Day) <- c("interval", "Day", "steps")
-```
-
-The following is the panel plot comparing the average number of steps taken per 5-minute interval between across weekdays and weekends.
-```{r}
-library(lattice)
-xyplot(steps ~ interval | Day, steps_Day, type = "l", layout = c(1, 2), 
-    xlab = "The 5-minute Interval", ylab = "Number of steps")
-```
-To refill the NA,a "for loop"" function is used and replaced with the 5-minute interval mean. Then the replacing NA is assigned to a new data set called activity_NoNa with the same dimension of the original activity data.
-
-```{r}
-stepsInterval <- aggregate(steps ~ interval, data = activity, mean)
-replaceNA <- numeric()
-for (i in 1:nrow(activity)) {
-    act <- activity[i, ]
-    if (is.na(act$steps)) {
-        steps <- subset(stepsInterval, interval == act$interval)$steps
-    } else {
-        steps <- act$steps
-    }
-    replaceNA <- c(replaceNA, steps)
-}
-activity_NoNa <- activity
-activity_NoNa$steps <- replaceNA
-```
-
-The Histogram with replacing NA is
-```{r}
-NewTotalSteps <- aggregate(steps ~ date, data = activity_NoNa, sum, na.rm = TRUE)
-hist(NewTotalSteps$steps,  xlab = " ", main = paste("Total Numbers of Steps Taken per Day"), col= "red",breaks = 10)
-```     
-
-The New mean and median are:
-```{r}
-New_Mean <- mean(NewTotalSteps$steps)
-New_Mean
 New_Median <- median(NewTotalSteps$steps)
 New_Median
 ```
