@@ -1,7 +1,5 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: html_document
----
+# Reproducible Research: Peer Assessment 1
+
 ## Introduction:
 This project demonstrates how to write a report in a sigle R markdown document through answering the questions of assignments. Data and questions can be downloaded from the ["Reproducible Research" course webpage](https://www.coursera.org/course/repdata). Data is collecting from a personal activity monitoring device at 5-minute intervals through out the day and consists of two months of data  collected during the months of October and November, 2012.
 
