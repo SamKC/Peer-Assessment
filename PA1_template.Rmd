@@ -11,7 +11,7 @@ To make a start on the assignment, Rstudio is implemented.
 Setting the global option to show the code with echo = TRUE and makes each time of running in html  faster when setting cache equals TRUE.
 ```{r}
 library(knitr)
-opts_chunk$set(echo = TRUE, cache = TRUE)
+opts_chunk$set(echo = TRUE,results = "hold", cache = TRUE)
 ```
 Loading the data from the "activity.csv" file
 ```{r}
@@ -21,8 +21,14 @@ To understand the data briefly, the following codes are used:
 
 ```{r}
 head(activity)
+```
+```{r}
 names(activity)
+```
+```{r}
 str(activity)
+```
+```{r}
 summary(activity)
 ```
 #### What is mean total number of steps taken per day?
@@ -45,6 +51,8 @@ To calculate its mean and median:
 ```{r}
 itsMean <- mean(Total_Steps$steps)
 itsMean 
+```
+```{r}
 itsMedian <- median(Total_Steps$steps)
 itsMedian
 ```
@@ -98,6 +106,8 @@ The New mean and median are:
 ```{r}
 New_Mean <- mean(NewTotalSteps$steps)
 New_Mean
+```
+```{r}
 New_Median <- median(NewTotalSteps$steps)
 New_Median
 ```

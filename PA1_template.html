@@ -72,7 +72,7 @@ img {
 <h4>Prepare the R environment</h4>
 <p>Setting the global option to show the code with echo = TRUE and makes each time of running in html faster when setting cache equals TRUE.</p>
 <pre class="r"><code>library(knitr)
-opts_chunk$set(echo = TRUE, cache = TRUE)</code></pre>
+opts_chunk$set(echo = TRUE,results = &quot;hold&quot;, cache = TRUE)</code></pre>
 <p>Loading the data from the “activity.csv” file</p>
 <pre class="r"><code>activity &lt;- read.csv(&quot;activity.csv&quot;, colClasses = c(&quot;numeric&quot;, &quot;Date&quot;, &quot;numeric&quot;))</code></pre>
 <p>To understand the data briefly, the following codes are used:</p>
